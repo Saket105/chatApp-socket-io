@@ -11,12 +11,20 @@ app.get("/", (req, res) => {
 });
 
 const server = https.createServer(app);
+
+
 const io = socketIO(server);
 
+
 io.on("connection", () => {
+
   console.log("New Connection");
+
 });
 
 server.listen(port, () => {
+
+  
   console.log(`server is running on http://localhost:${port}`);
+
 });
