@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import socketIo from "socket.io-client";
+
+const ENDPOINT = "http://localhost:4500/";
+const socket = socketIo(ENDPOINT, { transports: ["websocket"] });
+
+socket.on("connect", () => {});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Working</h1>
     </div>
   );
 }
