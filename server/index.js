@@ -8,6 +8,7 @@ const port = 4500 || process.env.PORT;
 const users = [{}];
 
 app.use(cors());
+
 app.get("/", (req, res) => {
   res.send("Chat App");
 });
@@ -32,7 +33,15 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("message,id", () => {
+    io.emit("sendMessage", { user: users[id], message, id });
+  });
+
   socket.on("disconnect", () => {
+    socket.broadcast.emit("leave", {
+      user: "Admin",
+      message: `User has left`,
+    });
     console.log("User Left");
   });
 });
